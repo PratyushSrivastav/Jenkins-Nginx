@@ -1,0 +1,22 @@
+services:
+    jenkins:
+        build: 
+          context: /Users/pratyushsrivastava/Desktop/Jenkins/jenkins
+          dockerfile: Dockerfile
+        container_name: jenkins-practice  
+        restart: on-failure
+        ports: 
+          - "50000:50000"
+        volumes:
+          - /Users/pratyushsrivastava/Desktop/Jenkins/jenkins_home:/var/jenkins_home
+    nginx:
+        build: 
+          context: /Users/pratyushsrivastava/Desktop/Jenkins/nginx
+          dockerfile: Dockerfile
+        container_name: nginx-practice
+        ports:
+          - "8080:80"
+        restart: on-failure
+        volumes:
+          - /Users/pratyushsrivastava/Desktop/Jenkins/logs:/var/log/nginx
+          - /Users/pratyushsrivastava/Desktop/Jenkins/nginx:/etc/nginx/conf.d
